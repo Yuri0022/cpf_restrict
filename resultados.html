@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        // Função para capturar os parâmetros da URL
+        function getQueryParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const status = urlParams.get('status');
+            const message = decodeURIComponent(urlParams.get('message'));
+
+            return { status, message };
+        }
+
+        // Função para exibir a mensagem
+        function displayMessage() {
+            const { status, message } = getQueryParams();
+
+            const resultsDiv = document.getElementById("results");
+            if (status === "success") {
+                resultsDiv.innerHTML = `<div class="success">${message}</div>`;
+            } else {
+                resultsDiv.innerHTML = `<div class="error">${message}</div>`;
+            }
+        }
+
+        // Chama a função assim que a página carregar
+        window.onload = displayMessage;
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="img/max_milhas_logo.jpeg" alt="Logo MaxMilhas">
+        </div>
+        <h1>Resultado da Operação</h1>
+        <div id="results">
+            <!-- Mensagens dinâmicas serão inseridas aqui -->
+        </div>
+        <div>
+            <button class="button" onclick="window.location.href='index.html'">Voltar para o Cadastro de CPF</button>
+        </div>
+    </div>
+</body>
+
+</html>
